@@ -1,0 +1,27 @@
+{% extends "EkynaCmsBundle::base.html.twig" %}
+
+{% block body %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+
+            <h1>{{ news.title }}</h1>
+            <p>
+                <em>{{ news.date|localizeddate('full') }}</em>
+            </p>
+            <div>
+                {{ news.content|raw }}
+            </div>
+            <hr>
+            {% set back_params = {} %}
+            {% set page = app.request.query.get('page') %}
+            {% if page > 1 %}
+                {% set back_params = {'page': page} %}
+            {% endif %}
+            <p style="text-align: center">
+                <a href="{{ path('ekyna_news_example_index', back_params) }}" class="btn btn-default">Retour</a>
+            </p>
+        </div>
+    </div>
+</div>
+{% endblock body %}
