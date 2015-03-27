@@ -5,6 +5,7 @@ namespace Ekyna\Bundle\NewsBundle\Entity;
 use Ekyna\Bundle\CmsBundle\Entity\Seo;
 use Ekyna\Bundle\CoreBundle\Model as Core;
 use Ekyna\Bundle\CmsBundle\Model as Cms;
+use Ekyna\Bundle\NewsBundle\Model\NewsInterface;
 
 
 /**
@@ -12,10 +13,7 @@ use Ekyna\Bundle\CmsBundle\Model as Cms;
  * @package Ekyna\Bundle\NewsBundle\Entity
  * @author Étienne Dauvergne <contact@ekyna.com>
  */
-class News implements
-    Cms\SeoSubjectInterface,
-    Core\TimestampableInterface,
-    Core\TaggedEntityInterface
+class News implements NewsInterface
 {
     use Cms\SeoSubjectTrait,
         Core\TimestampableTrait;

@@ -6,7 +6,8 @@
         xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
                             http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
 
-    <entity name="Ekyna\Bundle\NewsBundle\Entity\News"
+    <mapped-superclass
+            name="Ekyna\Bundle\NewsBundle\Entity\News"
             repository-class="Ekyna\Bundle\NewsBundle\Entity\NewsRepository"
             table="news_news">
 
@@ -30,6 +31,6 @@
             <gedmo:timestampable on="update" />
         </field>
 
-    </entity>
+    </mapped-superclass>
 
 </doctrine-mapping>
