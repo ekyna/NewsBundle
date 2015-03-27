@@ -9,15 +9,15 @@
             <hr>
 
             {% set nb_per_row = 3 %}
-            {% set detail_params = {} %}
+            {% set link_params = {} %}
             {% if pager.currentPage > 1 %}
-                {% set detail_params = {'page': pager.currentPage} %}
+                {% set link_params = {'page': pager.currentPage} %}
             {% endif %}
             {% for n in news %}
                 {% if loop.index0 % nb_per_row == 0 %}<div class="row">{% endif %}
                 <div class="col-md-{{ 12 / nb_per_row }}">
                     <p class="h4">
-                        <a href="{{ path('ekyna_news_example_detail', detail_params|merge({'slug': n.slug})) }}">
+                        <a href="{{ path('ekyna_news_example_detail', link_params|merge({'slug': n.slug})) }}">
                             {{ n.title }}
                         </a>
                     </p>

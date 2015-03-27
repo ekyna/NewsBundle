@@ -36,6 +36,7 @@ class ExampleController extends Controller
      *
      * @param Request $request
      * @return \Symfony\Component\HttpFoundation\Response
+     * @throws NotFoundHttpException
      */
     public function detailAction(Request $request)
     {
@@ -47,8 +48,11 @@ class ExampleController extends Controller
             throw new NotFoundHttpException('News not found.');
         }
 
+        $latest = $repo->findLatest();
+
         return $this->render('EkynaNewsBundle:Example:detail.html.twig', array(
             'news' => $news,
+            'latest' => $latest,
         ));
     }
 }
