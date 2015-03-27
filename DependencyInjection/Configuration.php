@@ -39,7 +39,6 @@ class Configuration implements ConfigurationInterface
                     ->addDefaultsIfNotSet()
                     ->children()
                         ->arrayNode('news')
-                            ->isRequired()
                             ->addDefaultsIfNotSet()
                             ->children()
                                 ->variableNode('templates')->defaultValue(array(
