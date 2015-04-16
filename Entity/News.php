@@ -16,7 +16,8 @@ use Ekyna\Bundle\NewsBundle\Model\NewsInterface;
 class News implements NewsInterface
 {
     use Cms\SeoSubjectTrait,
-        Core\TimestampableTrait;
+        Core\TimestampableTrait,
+        Core\TaggedEntityTrait;
 
     /**
      * @var integer
@@ -249,16 +250,10 @@ class News implements NewsInterface
     }
 
     /**
-     * Returns the http cache tag.
-     *
-     * @throws \RuntimeException
-     * @return string
+     * {@inheritdoc}
      */
-    public function getEntityTag()
+    public static function getEntityTagPrefix()
     {
-        if (null === $this->getId()) {
-            throw new \RuntimeException('Unable to generate http cache tag, as the id property is undefined.');
-        }
-        return sprintf('ekyna_news.news[id:%s]', $this->getId());
+        return 'ekyna_news.news';
     }
 }

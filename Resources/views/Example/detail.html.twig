@@ -7,7 +7,7 @@
 
             <h1>{{ news.title }}</h1>
             <p>
-                <em>{{ news.date|localizeddate('full') }}</em>
+                <em>{{ news.date|localizeddate('full', 'short') }}</em>
             </p>
             <div>
                 {{ news.content|raw }}
