@@ -3,6 +3,7 @@
 namespace Ekyna\Bundle\NewsBundle\Controller;
 
 use Ekyna\Bundle\CoreBundle\Controller\Controller;
+use Ekyna\Bundle\NewsBundle\Entity\News;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
@@ -25,10 +26,20 @@ class ExampleController extends Controller
         $repo = $this->get('ekyna_news.news.repository');
         $pager = $repo->createPager($currentPage, 12, true);
 
-        return $this->render('EkynaNewsBundle:Example:index.html.twig', array(
+        /** @var News[] $news */
+        $news = $pager->getCurrentPageResults();
+
+        $response = $this->render('EkynaNewsBundle:Example:index.html.twig', array(
             'pager' => $pager,
-            'news'  => $pager->getCurrentPageResults(),
+            'news'  => $news,
         ));
+
+        $tags = [News::getEntityTagPrefix()];
+        foreach ($news as $n) {
+            $tags[] = $n->getEntityTag();
+        }
+
+        return $this->configureSharedCache($response, $tags);
     }
 
     /**
@@ -50,9 +61,16 @@ class ExampleController extends Controller
 
         $latest = $repo->findLatest();
 
-        return $this->render('EkynaNewsBundle:Example:detail.html.twig', array(
+        $response = $this->render('EkynaNewsBundle:Example:detail.html.twig', array(
             'news' => $news,
             'latest' => $latest,
         ));
+
+        $tags = [News::getEntityTagPrefix(), $news->getEntityTag()];
+        foreach ($latest as $l) {
+            $tags[] = $l->getEntityTag();
+        }
+
+        return $this->configureSharedCache($response, $tags);
     }
 }
