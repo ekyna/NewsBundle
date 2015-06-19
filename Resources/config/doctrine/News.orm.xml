@@ -16,11 +16,6 @@
         </id>
 
         <field name="name" type="string" column="name" length="255"/>
-        <field name="title" type="string" column="title" length="255"/>
-        <field name="content" type="text" column="content"/>
-        <field name="slug" column="slug" type="string" length="255" unique="true">
-            <gedmo:slug unique="true" updatable="false" fields="name" />
-        </field>
         <field name="date" type="datetime" column="date"/>
         <field name="private" type="boolean" column="private"/>
         <field name="enabled" type="boolean" column="enabled"/>

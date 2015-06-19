@@ -21,18 +21,15 @@ class NewsType extends ResourceFormType
             ->add('name', 'text', array(
                 'label' => 'ekyna_core.field.name',
             ))
-            ->add('title', 'text', array(
-                'label' => 'ekyna_core.field.title',
+            ->add('translations', 'a2lix_translationsForms', array(
+                'form_type' => new NewsTranslationType(),
+                'label'     => false,
+                'attr' => array(
+                    'widget_col' => 12,
+                ),
             ))
             ->add('date', 'datetime', array(
                 'label' => 'ekyna_core.field.date',
-            ))
-            ->add('content', 'textarea', array(
-                'label' => 'ekyna_core.field.content',
-                'attr' => array(
-                    'class' => 'tinymce',
-                    'data-theme' => 'advanced',
-                )
             ))
             ->add('private', 'checkbox', array(
                 'label' => 'ekyna_core.field.private',

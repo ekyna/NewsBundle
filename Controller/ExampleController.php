@@ -24,7 +24,16 @@ class ExampleController extends Controller
     {
         $currentPage = $request->query->get('page', 1);
         $repo = $this->get('ekyna_news.news.repository');
-        $pager = $repo->createPager($currentPage, 12, true);
+
+        $pager = $repo->createPager(
+            array('enabled' => true, 'private' => false),
+            array('startDate' => 'desc')
+        );
+        $pager
+            ->setNormalizeOutOfRangePages(true)
+            ->setMaxPerPage(12)
+            ->setCurrentPage($currentPage)
+        ;
 
         /** @var News[] $news */
         $news = $pager->getCurrentPageResults();

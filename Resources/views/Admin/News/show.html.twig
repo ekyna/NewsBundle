@@ -24,7 +24,6 @@
 	    <div class="tab-content">
 		    <div class="tab-pane active" id="news-news-general">
                 {{ show_row(news.name, 'text', 'ekyna_core.field.name') }}
-                {{ show_row(news.title, 'text', 'ekyna_core.field.title') }}
                 {{ show_row(news.date, 'datetime', 'ekyna_core.field.date') }}
                 <div class="row">
                     <div class="col-md-6">
@@ -36,6 +35,7 @@
                 </div>
 		    </div>
             <div class="tab-pane" id="news-news-content">
+                {{ show_row(news.title, 'text', 'ekyna_core.field.title') }}
                 {{ show_row(path('ekyna_news_news_admin_tinymce', identifiers|merge({'newsId': news.id})), 'tinymce', 'ekyna_core.field.content') }}
             </div>
             <div class="tab-pane" id="news-news-seo">

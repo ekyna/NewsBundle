@@ -9,12 +9,6 @@
         <property name="name">
             <constraint name="NotBlank" />
         </property>
-        <property name="title">
-            <constraint name="NotBlank" />
-        </property>
-        <property name="content">
-            <constraint name="NotBlank" />
-        </property>
         <property name="date">
             <constraint name="NotNull" />
             <constraint name="DateTime" />
@@ -22,6 +16,12 @@
         <property name="seo">
             <constraint name="NotNull" />
             <constraint name="Valid" />
+        </property>
+    </class>
+
+    <class name="Ekyna\Bundle\NewsBundle\Entity\NewsTranslation">
+        <property name="title">
+            <constraint name="NotBlank" />
         </property>
     </class>
 

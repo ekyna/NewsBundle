@@ -2,18 +2,20 @@
 
 namespace Ekyna\Bundle\NewsBundle\Entity;
 
+use Ekyna\Bundle\AdminBundle\Model\AbstractTranslatable;
 use Ekyna\Bundle\CmsBundle\Entity\Seo;
 use Ekyna\Bundle\CoreBundle\Model as Core;
 use Ekyna\Bundle\CmsBundle\Model as Cms;
 use Ekyna\Bundle\NewsBundle\Model\NewsInterface;
 
-
 /**
  * Class News
  * @package Ekyna\Bundle\NewsBundle\Entity
  * @author Étienne Dauvergne <contact@ekyna.com>
+ *
+ * @method NewsTranslation translate($locale = null, $create = false)
  */
-class News implements NewsInterface
+class News extends AbstractTranslatable implements NewsInterface
 {
     use Cms\SeoSubjectTrait,
         Core\TimestampableTrait,
@@ -28,21 +30,6 @@ class News implements NewsInterface
      * @var string
      */
     private $name;
-
-    /**
-     * @var string
-     */
-    private $title;
-
-    /**
-     * @var string
-     */
-    private $content;
-
-    /**
-     * @var string
-     */
-    private $slug;
 
     /**
      * @var \DateTime
@@ -65,6 +52,8 @@ class News implements NewsInterface
      */
     public function __construct()
     {
+        parent::__construct();
+
         $this->seo = new Seo();
     }
 
@@ -119,8 +108,7 @@ class News implements NewsInterface
      */
     public function setTitle($title)
     {
-        $this->title = $title;
-
+        $this->translate()->setTitle($title);
         return $this;
     }
 
@@ -131,7 +119,7 @@ class News implements NewsInterface
      */
     public function getTitle()
     {
-        return $this->title;
+        return $this->translate()->getTitle();
     }
 
     /**
@@ -142,8 +130,7 @@ class News implements NewsInterface
      */
     public function setContent($content)
     {
-        $this->content = $content;
-
+        $this->translate()->setContent($content);
         return $this;
     }
 
@@ -154,7 +141,7 @@ class News implements NewsInterface
      */
     public function getContent()
     {
-        return $this->content;
+        return $this->translate()->getContent();
     }
 
     /**
@@ -165,8 +152,7 @@ class News implements NewsInterface
      */
     public function setSlug($slug)
     {
-        $this->slug = $slug;
-
+        $this->translate()->setSlug($slug);
         return $this;
     }
 
@@ -177,7 +163,7 @@ class News implements NewsInterface
      */
     public function getSlug()
     {
-        return $this->slug;
+        return $this->translate()->getSlug();
     }
 
     /**
