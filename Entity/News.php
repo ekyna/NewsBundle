@@ -24,22 +24,22 @@ class News extends AbstractTranslatable implements NewsInterface
     /**
      * @var integer
      */
-    private $id;
+    protected $id;
 
     /**
      * @var string
      */
-    private $name;
+    protected $name;
 
     /**
      * @var \DateTime
      */
-    private $date;
+    protected $date;
 
     /**
      * @var boolean
      */
-    private $enabled;
+    protected $enabled;
 
 
     /**

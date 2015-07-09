@@ -14,22 +14,22 @@ class NewsTranslation extends AbstractTranslation
     /**
      * @var integer
      */
-    private $id;
+    protected $id;
 
     /**
      * @var string
      */
-    private $title;
+    protected $title;
 
     /**
      * @var string
      */
-    private $content;
+    protected $content;
 
     /**
      * @var string
      */
-    private $slug;
+    protected $slug;
 
 
     /**
