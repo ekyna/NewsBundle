@@ -24,10 +24,9 @@
 	    <div class="tab-content">
 		    <div class="tab-pane active" id="news-news-general">
                 {{ show_row(news.name, 'text', 'ekyna_core.field.name') }}
-                {{ show_row(news.date, 'datetime', 'ekyna_core.field.date') }}
                 <div class="row">
                     <div class="col-md-6">
-                        {{ show_row(news.private, 'checkbox', 'ekyna_core.field.private', {'label_nb_col': 4, 'widget_nb_col': 8}) }}
+                        {{ show_row(news.date, 'datetime', 'ekyna_core.field.date', {'label_nb_col': 4, 'widget_nb_col': 8}) }}
                     </div>
                     <div class="col-md-6">
                         {{ show_row(news.enabled, 'checkbox', 'ekyna_core.field.enabled', {'label_nb_col': 4, 'widget_nb_col': 8}) }}
