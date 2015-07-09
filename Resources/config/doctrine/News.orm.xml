@@ -17,7 +17,6 @@
 
         <field name="name" type="string" column="name" length="255"/>
         <field name="date" type="datetime" column="date"/>
-        <field name="private" type="boolean" column="private"/>
         <field name="enabled" type="boolean" column="enabled"/>
         <field name="createdAt" column="created_at" type="datetime">
             <gedmo:timestampable on="create" />

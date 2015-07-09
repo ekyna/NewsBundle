@@ -39,11 +39,6 @@ class News extends AbstractTranslatable implements NewsInterface
     /**
      * @var boolean
      */
-    private $private;
-
-    /**
-     * @var boolean
-     */
     private $enabled;
 
 
@@ -187,29 +182,6 @@ class News extends AbstractTranslatable implements NewsInterface
     public function getDate()
     {
         return $this->date;
-    }
-
-    /**
-     * Set private
-     *
-     * @param boolean $private
-     * @return News
-     */
-    public function setPrivate($private)
-    {
-        $this->private = $private;
-
-        return $this;
-    }
-
-    /**
-     * Get private
-     *
-     * @return boolean 
-     */
-    public function getPrivate()
-    {
-        return $this->private;
     }
 
     /**

@@ -47,7 +47,6 @@ class LoadEventData extends AbstractFixture implements FixtureInterface, Ordered
                 ->setName(sprintf('News %d name', $e))
                 ->setTitle(sprintf('News %d title', $e))
                 ->setDate($date)
-                ->setPrivate(rand(0,100) > 30)
                 ->setEnabled(rand(0,100) > 30)
                 ->setContent('<p>' . $faker->paragraph(rand(4, 6)) . '</p>')
             ;

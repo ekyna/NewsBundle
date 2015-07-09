@@ -21,33 +21,33 @@ ekyna_news_news_admin_show:
     defaults: { _controller: "ekyna_news.news.controller:showAction" }
     requirements:
         _method: GET
-        newsId:  \d+
+        newsId: \d+
 
 ekyna_news_news_admin_edit:
     path: /{newsId}/edit
     defaults: { _controller: "ekyna_news.news.controller:editAction" }
     requirements:
         _method: GET|POST
-        newsId:  \d+
+        newsId: \d+
 
 ekyna_news_news_admin_tinymce:
     path: /{newsId}/tinymce
     defaults: { _controller: "ekyna_news.news.controller:tinymceAction", field: content }
     requirements:
         _method: GET
-        newsId:  \d+
+        newsId: \d+
 
 ekyna_news_news_admin_toggle:
     path: /{newsId}/toggle/{field}
-    defaults: { _controller: "ekyna_news.news.controller:toggleAction", field: "enabled" }
+    defaults: { _controller: "ekyna_news.news.controller:toggleAction", field: enabled }
     requirements:
         _method: GET
-        newsId:  \d+
-        field:  \w+
+        newsId: \d+
+        field: \w+
 
 ekyna_news_news_admin_remove:
     path: /{newsId}/remove
     defaults: { _controller: "ekyna_news.news.controller:removeAction" }
     requirements:
         _method: GET|POST
-        newsId:  \d+
+        newsId: \d+

@@ -29,19 +29,6 @@ class NewsType extends ResourceTableType
             ->addColumn('date', 'datetime', array(
                 'label' => 'ekyna_core.field.date',
             ))
-            ->addColumn('private', 'boolean', array(
-                'label' => 'ekyna_core.field.private',
-                'sortable' => true,
-                'true_class'  => 'label-warning',
-                'false_class' => 'label-success',
-                'route_name' => 'ekyna_news_news_admin_toggle',
-                'route_parameters' => array(
-                    'field' => 'private',
-                ),
-                'route_parameters_map' => array(
-                    'newsId' => 'id',
-                ),
-            ))
             ->addColumn('enabled', 'boolean', array(
                 'label' => 'ekyna_core.field.enabled',
                 'sortable' => true,

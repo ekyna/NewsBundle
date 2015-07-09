@@ -31,13 +31,6 @@ class NewsType extends ResourceFormType
             ->add('date', 'datetime', array(
                 'label' => 'ekyna_core.field.date',
             ))
-            ->add('private', 'checkbox', array(
-                'label' => 'ekyna_core.field.private',
-                'required' => false,
-                'attr' => array(
-                    'align_with_widget' => true
-                ),
-            ))
             ->add('enabled', 'checkbox', array(
                 'label' => 'ekyna_core.field.enabled',
                 'required' => false,

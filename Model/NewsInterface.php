@@ -95,21 +95,6 @@ interface NewsInterface extends Cms\SeoSubjectInterface, Core\TimestampableInter
     public function getDate();
 
     /**
-     * Set private
-     *
-     * @param boolean $private
-     * @return NewsInterface|$this
-     */
-    public function setPrivate($private);
-
-    /**
-     * Get private
-     *
-     * @return boolean
-     */
-    public function getPrivate();
-
-    /**
      * Set enabled
      *
      * @param boolean $enabled

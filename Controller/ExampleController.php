@@ -26,8 +26,8 @@ class ExampleController extends Controller
         $repo = $this->get('ekyna_news.news.repository');
 
         $pager = $repo->createPager(
-            array('enabled' => true, 'private' => false),
-            array('startDate' => 'desc')
+            array('enabled' => true),
+            array('date' => 'desc')
         );
         $pager
             ->setNormalizeOutOfRangePages(true)
