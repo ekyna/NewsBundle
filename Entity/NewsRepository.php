@@ -15,6 +15,26 @@ use Ekyna\Bundle\NewsBundle\Model\NewsInterface;
 class NewsRepository extends TranslatableResourceRepository
 {
     /**
+     * {@inheritdoc}
+     */
+    public function createPager(array $criteria = array(), array $sorting = array())
+    {
+        $qb = $this->getCollectionQueryBuilder();
+
+        $this->applyCriteria($qb, $criteria);
+        $this->applySorting($qb, $sorting);
+
+        $today = new \DateTime();
+        $today->setTime(23,59,59);
+        $qb
+            ->andWhere($qb->expr()->lte('n.date', ':today'))
+            ->setParameter('today', $today, Type::DATETIME)
+        ;
+
+        return $this->getPager($qb);
+    }
+
+    /**
      * Finds one news by slug.
      *
      * @param string $slug
