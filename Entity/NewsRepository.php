@@ -3,6 +3,7 @@
 namespace Ekyna\Bundle\NewsBundle\Entity;
 
 use Doctrine\DBAL\Types\Type;
+use Doctrine\ORM\Tools\Pagination\Paginator;
 use Ekyna\Bundle\AdminBundle\Doctrine\ORM\TranslatableResourceRepository;
 use Ekyna\Bundle\NewsBundle\Model\NewsInterface;
 
@@ -43,19 +44,17 @@ class NewsRepository extends TranslatableResourceRepository
         $today->setTime(23,59,59);
 
         $qb = $this->getCollectionQueryBuilder();
-        $query = $qb
+        $qb
             ->andWhere($qb->expr()->eq('n.enabled', ':enabled'))
             ->andWhere($qb->expr()->lte('n.date', ':today'))
             ->addOrderBy('n.date', 'DESC')
             ->getQuery()
-        ;
-
-        return $query
             ->setMaxResults($limit)
             ->setParameter('enabled', true)
             ->setParameter('today', $today, Type::DATETIME)
-            ->getResult()
         ;
+
+        return new Paginator($qb->getQuery(), true);
     }
 
     /**
