@@ -26,10 +26,24 @@ class NewsRepository extends TranslatableResourceRepository
             return null;
         }
 
-        return $this->findOneBy(array(
-            'enabled' => true,
-            'slug' => $slug
-        ));
+        $today = new \DateTime();
+        $today->setTime(23,59,59);
+
+        $qb = $this->getQueryBuilder();
+        $query = $qb
+            ->andWhere($qb->expr()->eq('n.enabled', ':enabled'))
+            ->andWhere($qb->expr()->eq('translation.slug', ':slug'))
+            ->andWhere($qb->expr()->lte('n.date', ':today'))
+            ->addOrderBy('n.date', 'DESC')
+            ->getQuery()
+        ;
+
+        return $query
+            ->setParameter('enabled', true)
+            ->setParameter('slug', $slug)
+            ->setParameter('today', $today, Type::DATETIME)
+            ->getOneOrNullResult()
+        ;
     }
 
     /**
