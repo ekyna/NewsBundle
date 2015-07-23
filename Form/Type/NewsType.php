@@ -38,7 +38,6 @@ class NewsType extends ResourceFormType
                     'align_with_widget' => true
                 ),
             ))
-            ->add('seo', 'ekyna_cms_seo')
         ;
     }
 

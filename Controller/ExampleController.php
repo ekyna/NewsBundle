@@ -68,7 +68,7 @@ class ExampleController extends Controller
             throw new NotFoundHttpException('News not found.');
         }
 
-        $latest = $repo->findLatest();
+        $latest = $repo->findLatest()->getIterator();
 
         $response = $this->render('EkynaNewsBundle:Example:detail.html.twig', array(
             'news' => $news,

@@ -3,14 +3,13 @@
 namespace Ekyna\Bundle\NewsBundle\Model;
 
 use Ekyna\Bundle\CoreBundle\Model as Core;
-use Ekyna\Bundle\CmsBundle\Model as Cms;
 
 /**
  * Interface NewsInterface
  * @package Ekyna\Bundle\NewsBundle\Model
  * @author Étienne Dauvergne <contact@ekyna.com>
  */
-interface NewsInterface extends Cms\SeoSubjectInterface, Core\TimestampableInterface, Core\TaggedEntityInterface
+interface NewsInterface extends Core\TimestampableInterface, Core\TaggedEntityInterface
 {
     /**
      * Get id

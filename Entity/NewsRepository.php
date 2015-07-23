@@ -70,7 +70,7 @@ class NewsRepository extends TranslatableResourceRepository
      * Finds the latest news.
      *
      * @param int $limit
-     * @return NewsInterface[]
+     * @return Paginator|NewsInterface[]
      */
     public function findLatest($limit = 3)
     {
@@ -82,10 +82,10 @@ class NewsRepository extends TranslatableResourceRepository
             ->andWhere($qb->expr()->eq('n.enabled', ':enabled'))
             ->andWhere($qb->expr()->lte('n.date', ':today'))
             ->addOrderBy('n.date', 'DESC')
-            ->getQuery()
             ->setMaxResults($limit)
             ->setParameter('enabled', true)
             ->setParameter('today', $today, Type::DATETIME)
+            ->getQuery()
         ;
 
         return new Paginator($qb->getQuery(), true);

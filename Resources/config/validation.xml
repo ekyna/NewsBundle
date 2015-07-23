@@ -13,8 +13,7 @@
             <constraint name="NotNull" />
             <constraint name="DateTime" />
         </property>
-        <property name="seo">
-            <constraint name="NotNull" />
+        <property name="translations">
             <constraint name="Valid" />
         </property>
     </class>

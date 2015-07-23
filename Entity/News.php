@@ -3,9 +3,7 @@
 namespace Ekyna\Bundle\NewsBundle\Entity;
 
 use Ekyna\Bundle\AdminBundle\Model\AbstractTranslatable;
-use Ekyna\Bundle\CmsBundle\Entity\Seo;
 use Ekyna\Bundle\CoreBundle\Model as Core;
-use Ekyna\Bundle\CmsBundle\Model as Cms;
 use Ekyna\Bundle\NewsBundle\Model\NewsInterface;
 
 /**
@@ -17,8 +15,7 @@ use Ekyna\Bundle\NewsBundle\Model\NewsInterface;
  */
 class News extends AbstractTranslatable implements NewsInterface
 {
-    use Cms\SeoSubjectTrait,
-        Core\TimestampableTrait,
+    use Core\TimestampableTrait,
         Core\TaggedEntityTrait;
 
     /**
@@ -41,16 +38,6 @@ class News extends AbstractTranslatable implements NewsInterface
      */
     protected $enabled;
 
-
-    /**
-     * Constructor.
-     */
-    public function __construct()
-    {
-        parent::__construct();
-
-        $this->seo = new Seo();
-    }
 
     /**
      * Returns the string representation.

@@ -1,7 +1,5 @@
 <ul class="nav nav-tabs">
     <li class="active"><a href="#news-news-general" data-toggle="tab">{{ 'ekyna_core.field.general'|trans }}</a></li>
-    <li><a href="#news-news-content" data-toggle="tab">{{ 'ekyna_core.field.content'|trans }}</a></li>
-    <li><a href="#news-news-seo" data-toggle="tab">{{ 'ekyna_core.field.seo'|trans }}</a></li>
 </ul>
 <div class="panel-body form-body">
     {{ bootstrap_set_style('horizontal') }}
@@ -14,13 +12,8 @@
                 <div class="col-md-6">{{ form_row(form.date, {'label_col': 4, 'widget_col': 8}) }}</div>
                 <div class="col-md-6">{{ form_row(form.enabled, {'label_col': 4, 'widget_col': 8}) }}</div>
             </div>
-	    </div>
-        <div class="tab-pane" id="news-news-content">
             {{ form_row(form.translations) }}
-        </div>
-        <div class="tab-pane" id="news-news-seo">
-            {{ form_row(form.seo) }}
-        </div>
+	    </div>
         {{ form_rest(form) }}
     </div>
 </div>
