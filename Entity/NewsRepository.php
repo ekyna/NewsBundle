@@ -26,9 +26,9 @@ class NewsRepository extends TranslatableResourceRepository
         $qb = $this->getCollectionQueryBuilder();
 
         $query = $qb
-            ->addOrderBy('e.date', 'desc')
-            ->andWhere($qb->expr()->eq('e.enabled', ':enabled'))
-            ->andWhere($qb->expr()->lte('e.date', ':today'))
+            ->addOrderBy('n.date', 'desc')
+            ->andWhere($qb->expr()->eq('n.enabled', ':enabled'))
+            ->andWhere($qb->expr()->lte('n.date', ':today'))
             ->getQuery()
         ;
 
