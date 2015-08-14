@@ -23,16 +23,10 @@ class ExampleController extends Controller
     public function indexAction(Request $request)
     {
         $currentPage = $request->query->get('page', 1);
-        $repo = $this->get('ekyna_news.news.repository');
 
-        $pager = $repo->createPager(
-            array('enabled' => true),
-            array('date' => 'desc')
-        );
-        $pager
-            ->setNormalizeOutOfRangePages(true)
-            ->setMaxPerPage(12)
-            ->setCurrentPage($currentPage)
+        $pager = $this
+            ->get('ekyna_news.news.repository')
+            ->createFrontPager($currentPage, 12)
         ;
 
         /** @var News[] $news */

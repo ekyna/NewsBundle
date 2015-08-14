@@ -15,23 +15,35 @@ use Ekyna\Bundle\NewsBundle\Model\NewsInterface;
 class NewsRepository extends TranslatableResourceRepository
 {
     /**
-     * {@inheritdoc}
+     * Returns the front news pager.
+     *
+     * @param integer $currentPage
+     * @param integer $maxPerPage
+     * @return \Pagerfanta\Pagerfanta
      */
-    public function createPager(array $criteria = array(), array $sorting = array())
+    public function createFrontPager($currentPage, $maxPerPage = 12)
     {
         $qb = $this->getCollectionQueryBuilder();
 
-        $this->applyCriteria($qb, $criteria);
-        $this->applySorting($qb, $sorting);
+        $query = $qb
+            ->addOrderBy('e.date', 'desc')
+            ->andWhere($qb->expr()->eq('e.enabled', ':enabled'))
+            ->andWhere($qb->expr()->lte('e.date', ':today'))
+            ->getQuery()
+        ;
 
         $today = new \DateTime();
         $today->setTime(23,59,59);
-        $qb
-            ->andWhere($qb->expr()->lte('n.date', ':today'))
+        $query
+            ->setParameter('enabled', true)
             ->setParameter('today', $today, Type::DATETIME)
         ;
 
-        return $this->getPager($qb);
+        return $this
+            ->getPager($query)
+            ->setMaxPerPage($maxPerPage)
+            ->setCurrentPage($currentPage)
+        ;
     }
 
     /**
