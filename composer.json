@@ -22,11 +22,10 @@
 		"ob/highcharts-bundle" : "~1.2"
 	},
 	"autoload" : {
-		"psr-0" : {
-			"Ekyna\\Bundle\\NewsBundle" : ""
+		"psr-4" : {
+			"Ekyna\\Bundle\\NewsBundle\\" : ""
 		}
 	},
-	"target-dir" : "Ekyna/Bundle/NewsBundle",
 	"extra" : {
 		"branch-alias" : {
 			"dev-master" : "0.3.x-dev"
