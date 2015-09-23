@@ -18,26 +18,26 @@ class NewsType extends ResourceFormType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name', 'text', array(
+            ->add('name', 'text', [
                 'label' => 'ekyna_core.field.name',
-            ))
-            ->add('translations', 'a2lix_translationsForms', array(
+            ])
+            ->add('translations', 'a2lix_translationsForms', [
                 'form_type' => new NewsTranslationType(),
                 'label'     => false,
-                'attr' => array(
+                'attr' => [
                     'widget_col' => 12,
-                ),
-            ))
-            ->add('date', 'datetime', array(
+                ],
+            ])
+            ->add('date', 'datetime', [
                 'label' => 'ekyna_core.field.date',
-            ))
-            ->add('enabled', 'checkbox', array(
+            ])
+            ->add('enabled', 'checkbox', [
                 'label' => 'ekyna_core.field.enabled',
                 'required' => false,
-                'attr' => array(
+                'attr' => [
                     'align_with_widget' => true
-                ),
-            ))
+                ],
+            ])
         ;
     }
 

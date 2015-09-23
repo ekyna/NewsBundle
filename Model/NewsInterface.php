@@ -12,13 +12,6 @@ use Ekyna\Bundle\CoreBundle\Model as Core;
 interface NewsInterface extends Core\TimestampableInterface, Core\TaggedEntityInterface
 {
     /**
-     * Get id
-     *
-     * @return integer
-     */
-    public function getId();
-
-    /**
      * Set name
      *
      * @param string $name

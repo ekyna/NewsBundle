@@ -11,11 +11,11 @@ use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
- * Class LoadEventData
+ * Class LoadNewsData
  * @package Ekyna\Bundle\NewsBundle\DataFixtures\ORM
  * @author Étienne Dauvergne <contact@ekyna.com>
  */
-class LoadEventData extends AbstractFixture implements FixtureInterface, OrderedFixtureInterface, ContainerAwareInterface
+class LoadNewsData extends AbstractFixture implements FixtureInterface, OrderedFixtureInterface, ContainerAwareInterface
 {
     /**
      * @var ContainerInterface

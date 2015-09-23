@@ -41,10 +41,10 @@ class Configuration implements ConfigurationInterface
                         ->arrayNode('news')
                             ->addDefaultsIfNotSet()
                             ->children()
-                                ->variableNode('templates')->defaultValue(array(
+                                ->variableNode('templates')->defaultValue([
                                     '_form.html' => 'EkynaNewsBundle:Admin/News:_form.html',
                                     'show.html'  => 'EkynaNewsBundle:Admin/News:show.html',
-                                ))->end()
+                                ])->end()
                                 ->scalarNode('parent')->end()
                                 ->scalarNode('entity')->defaultValue('Ekyna\Bundle\NewsBundle\Entity\News')->end()
                                 ->scalarNode('controller')->defaultValue('Ekyna\Bundle\NewsBundle\Controller\Admin\NewsController')->end()
@@ -60,7 +60,7 @@ class Configuration implements ConfigurationInterface
                                         ->scalarNode('repository')->end()
                                         ->arrayNode('fields')
                                             ->prototype('scalar')->end()
-                                            ->defaultValue(array('title', 'content', 'slug'))
+                                            ->defaultValue(['title', 'content', 'slug'])
                                         ->end()
                                     ->end()
                                 ->end()

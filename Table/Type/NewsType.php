@@ -4,7 +4,7 @@ namespace Ekyna\Bundle\NewsBundle\Table\Type;
 
 use Ekyna\Bundle\AdminBundle\Table\Type\ResourceTableType;
 use Ekyna\Component\Table\TableBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
  * Class NewsType
@@ -19,61 +19,61 @@ class NewsType extends ResourceTableType
     public function buildTable(TableBuilderInterface $builder, array $options)
     {
         $builder
-            ->addColumn('name', 'anchor', array(
+            ->addColumn('name', 'anchor', [
                 'label' => 'ekyna_core.field.name',
                 'route_name' => 'ekyna_news_news_admin_show',
-                'route_parameters_map' => array(
+                'route_parameters_map' => [
                     'newsId' => 'id'
-                ),
-            ))
-            ->addColumn('date', 'datetime', array(
+                ],
+            ])
+            ->addColumn('date', 'datetime', [
                 'label' => 'ekyna_core.field.date',
-            ))
-            ->addColumn('enabled', 'boolean', array(
+            ])
+            ->addColumn('enabled', 'boolean', [
                 'label' => 'ekyna_core.field.enabled',
                 'sortable' => true,
                 'route_name' => 'ekyna_news_news_admin_toggle',
-                'route_parameters_map' => array(
+                'route_parameters_map' => [
                     'newsId' => 'id',
-                ),
-            ))
-            ->addColumn('actions', 'admin_actions', array(
-                'buttons' => array(
-                    array(
+                ],
+            ])
+            ->addColumn('actions', 'admin_actions', [
+                'buttons' => [
+                    [
                         'label' => 'ekyna_core.button.edit',
                         'icon' => 'pencil',
                         'class' => 'warning',
                         'route_name' => 'ekyna_news_news_admin_edit',
-                        'route_parameters_map' => array(
+                        'route_parameters_map' => [
                             'newsId' => 'id'
-                        ),
+                        ],
                         'permission' => 'edit',
-                    ),
-                    array(
+                    ],
+                    [
                         'label' => 'ekyna_core.button.remove',
                         'icon' => 'trash',
                         'class' => 'danger',
                         'route_name' => 'ekyna_news_news_admin_remove',
-                        'route_parameters_map' => array(
+                        'route_parameters_map' => [
                             'newsId' => 'id'
-                        ),
+                        ],
                         'permission' => 'delete',
-                    ),
-                ),
-            ))
+                    ],
+                ],
+            ])
         ;
     }
 
     /**
      * {@inheritdoc}
      */
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function configureOptions(OptionsResolver $resolver)
     {
-        parent::setDefaultOptions($resolver);
+        parent::configureOptions($resolver);
 
-        $resolver->setDefaults(array(
-            'default_sorts' => array('date desc'),
-        ));
+        $resolver->setDefaults([
+            'default_sorts' => ['date desc'],
+        ]);
     }
 
     /**

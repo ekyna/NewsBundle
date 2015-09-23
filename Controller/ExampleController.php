@@ -32,10 +32,10 @@ class ExampleController extends Controller
         /** @var News[] $news */
         $news = $pager->getCurrentPageResults();
 
-        $response = $this->render('EkynaNewsBundle:Example:index.html.twig', array(
+        $response = $this->render('EkynaNewsBundle:Example:index.html.twig', [
             'pager' => $pager,
             'news'  => $news,
-        ));
+        ]);
 
         $tags = [News::getEntityTagPrefix()];
         foreach ($news as $n) {
@@ -64,10 +64,10 @@ class ExampleController extends Controller
 
         $latest = $repo->findLatest()->getIterator();
 
-        $response = $this->render('EkynaNewsBundle:Example:detail.html.twig', array(
+        $response = $this->render('EkynaNewsBundle:Example:detail.html.twig', [
             'news' => $news,
             'latest' => $latest,
-        ));
+        ]);
 
         $tags = [News::getEntityTagPrefix(), $news->getEntityTag()];
         foreach ($latest as $l) {

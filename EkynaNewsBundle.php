@@ -28,8 +28,8 @@ class EkynaNewsBundle extends AbstractBundle
      */
     protected function getModelInterfaces()
     {
-        return array(
+        return [
             'Ekyna\Bundle\NewsBundle\Model\NewsInterface' => 'ekyna_news.news.class',
-        );
+        ];
     }
 }

@@ -4,7 +4,7 @@ namespace Ekyna\Bundle\NewsBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
  * Class NewsTranslationType
@@ -19,26 +19,26 @@ class NewsTranslationType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('title', 'text', array(
+            ->add('title', 'text', [
                 'label' => 'ekyna_core.field.title',
-            ))
-            ->add('content', 'tinymce', array(
+            ])
+            ->add('content', 'tinymce', [
                 'label' => 'ekyna_core.field.content',
                 'required' => false,
                 'theme' => 'advanced',
-            ))
+            ])
         ;
     }
 
     /**
      * {@inheritdoc}
      */
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function configureOptions(OptionsResolver $resolver)
     {
         $resolver
-            ->setDefaults(array(
+            ->setDefaults([
                 'data_class' => 'Ekyna\Bundle\NewsBundle\Entity\NewsTranslation',
-            ))
+            ])
         ;
     }
 
