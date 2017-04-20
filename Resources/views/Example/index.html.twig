@@ -36,10 +36,10 @@
                         </a>
                     </p>
                     <p>
-                        <em>{{ n.date|localizeddate('short', 'none') }}</em>
+                        <em>{{ n.date|format_date('short') }}</em>
                     </p>
                     <p>
-                        {{ n.content|striptags|truncate(128, true, '&hellip;')|raw }}
+                        {{ n.content|striptags|u.truncate(128, '&hellip;', true)|raw }}
                     </p>
 
                     {% if n.media -%}

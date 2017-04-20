@@ -1,99 +1,54 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Ekyna\Bundle\NewsBundle\Entity;
 
+use Ekyna\Bundle\NewsBundle\Model\NewsTranslationInterface;
 use Ekyna\Component\Resource\Model\AbstractTranslation;
 
 /**
- * Class News
+ * Class NewsTranslation
  * @package Ekyna\Bundle\NewsBundle\Entity
  * @author  Étienne Dauvergne <contact@ekyna.com>
  */
-class NewsTranslation extends AbstractTranslation
+class NewsTranslation extends AbstractTranslation implements NewsTranslationInterface
 {
-    /**
-     * @var string
-     */
-    protected $title;
+    protected ?string $title = null;
+    protected ?string $content = null;
+    protected ?string $slug = null;
 
-    /**
-     * @var string
-     */
-    protected $content;
-
-    /**
-     * @var string
-     */
-    protected $slug;
-
-
-    /**
-     * Sets the title.
-     *
-     * @param string $title
-     *
-     * @return NewsTranslation
-     */
-    public function setTitle(string $title): NewsTranslation
+    public function setTitle(?string $title): NewsTranslationInterface
     {
         $this->title = $title;
 
         return $this;
     }
 
-    /**
-     * Returns the title.
-     *
-     * @return string
-     */
     public function getTitle(): ?string
     {
         return $this->title;
     }
 
-    /**
-     * Sets the content.
-     *
-     * @param string $content
-     *
-     * @return NewsTranslation
-     */
-    public function setContent(string $content): NewsTranslation
+    public function setContent(?string $content): NewsTranslationInterface
     {
         $this->content = $content;
 
         return $this;
     }
 
-    /**
-     * Returns the content.
-     *
-     * @return string
-     */
     public function getContent(): ?string
     {
         return $this->content;
     }
 
-    /**
-     * Sets the slug.
-     *
-     * @param string $slug
-     *
-     * @return NewsTranslation
-     */
-    public function setSlug(string $slug): NewsTranslation
+    public function setSlug(?string $slug): NewsTranslationInterface
     {
         $this->slug = $slug;
 
         return $this;
     }
 
-    /**
-     * Returns the slug.
-     *
-     * @return string
-     */
     public function getSlug(): ?string
     {
         return $this->slug;

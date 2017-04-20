@@ -1,0 +1,56 @@
+{% extends '@EkynaAdmin/Entity/Crud/read.html.twig' %}
+
+{% block main_tabs -%}
+    {{ parent() }}
+    <li>
+        <a href="#{{ resource_name }}-seo" id="toggle-seo" data-toggle="tab">
+            {{ 'field.seo'|trans({}, 'EkynaUi') }}
+        </a>
+    </li>
+{%- endblock main_tabs %}
+
+{% block main_contents -%}
+    <div class="tab-pane active" id="{{ resource_name }}-general">
+        {{ show_row(news.name, 'text', {
+            'label': t('field.name', [], 'EkynaUi')
+        }) }}
+        <div class="row">
+            <div class="col-md-6">
+                {{ show_row(news.date, 'datetime', {
+                    'label': t('field.date', [], 'EkynaUi'),
+                    'time': false,
+                    'label_col': 4,
+                    'widget_col': 8
+                }) }}
+            </div>
+            <div class="col-md-6">
+                {{ show_row(news.enabled, 'boolean', {
+                    'label': t('field.enabled', [], 'EkynaUi'),
+                    'color': true,
+                    'label_col': 4,
+                    'widget_col': 8
+                }) }}
+            </div>
+        </div>
+        {{ show_row(news.translations, 'translations', {
+            'fields': {
+                'title': {'label': t('field.title', [], 'EkynaUi')},
+                'content': {
+                    'label': t('field.content', [], 'EkynaUi'),
+                    'type': 'tinymce',
+                    'property_path': null,
+                    'options': {
+                        'height': 150,
+                        'field': 'content',
+                    }
+                }
+            }
+        }) }}
+        {{ show_row(news.media, 'media_media', {
+            'label': t('field.media', [], 'EkynaUi')
+        }) }}
+    </div>
+    <div class="tab-pane" id="{{ resource_name }}-seo">
+        {{ show_row(news.seo, 'seo') }}
+    </div>
+{%- endblock main_contents %}

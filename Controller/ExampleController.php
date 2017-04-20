@@ -1,80 +1,74 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Ekyna\Bundle\NewsBundle\Controller;
 
-use Ekyna\Bundle\CoreBundle\Controller\Controller;
 use Ekyna\Bundle\NewsBundle\Entity\News;
+use Ekyna\Bundle\NewsBundle\Repository\NewsRepositoryInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Twig\Environment;
 
 /**
  * Class ExampleController
  * @package Ekyna\Bundle\NewsBundle\Controller
  * @author  Étienne Dauvergne <contact@ekyna.com>
  */
-class ExampleController extends Controller
+class ExampleController
 {
+    private NewsRepositoryInterface $newsRepository;
+    private Environment             $twig;
+
+    public function __construct(NewsRepositoryInterface $newsRepository, Environment $twig)
+    {
+        $this->newsRepository = $newsRepository;
+        $this->twig = $twig;
+    }
+
     /**
      * Example index page.
-     *
-     * @param Request $request
-     *
-     * @return Response
      */
-    public function indexAction(Request $request): Response
+    public function index(Request $request): Response
     {
-        $currentPage = $request->query->get('page', 1);
+        $currentPage = $request->query->getInt('page', 1);
 
         $pager = $this
-            ->get('ekyna_news.news.repository')
+            ->newsRepository
             ->createFrontPager($currentPage, 12);
 
         /** @var News[] $news */
         $news = $pager->getCurrentPageResults();
 
-        $response = $this->render('@EkynaNews/Example/index.html.twig', [
+        $content = $this->twig->render('@EkynaNews/Example/index.html.twig', [
             'pager' => $pager,
             'news'  => $news,
         ]);
 
-        $tags = [News::getEntityTagPrefix()];
-        foreach ($news as $n) {
-            $tags[] = $n->getEntityTag();
-        }
-
-        return $this->configureSharedCache($response, $tags);
+        return new Response($content);
     }
 
     /**
      * Example detail page.
-     *
-     * @param Request $request
-     *
-     * @return Response
      */
-    public function detailAction(Request $request): Response
+    public function detail(Request $request): Response
     {
-        $repo = $this->get('ekyna_news.news.repository');
-
-        $news = $repo->findOneBySlug($request->attributes->get('slug'));
+        $news = $this
+            ->newsRepository
+            ->findOneBySlug($request->attributes->get('slug'));
 
         if (null === $news) {
             throw new NotFoundHttpException('News not found.');
         }
 
-        $latest = $repo->findLatest()->getIterator();
+        $latest = $this->newsRepository->findLatest()->getIterator();
 
-        $response = $this->render('@EkynaNews/Example/detail.html.twig', [
+        $content = $this->twig->render('@EkynaNews/Example/detail.html.twig', [
             'news'   => $news,
             'latest' => $latest,
         ]);
 
-        $tags = [News::getEntityTagPrefix(), $news->getEntityTag()];
-        foreach ($latest as $l) {
-            $tags[] = $l->getEntityTag();
-        }
-
-        return $this->configureSharedCache($response, $tags);
+        return new Response($content);
     }
 }

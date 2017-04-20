@@ -1,0 +1,20 @@
+label: News
+
+news:
+    label:
+        singular: News
+        plural: News
+    header:
+        list: News <small>News list</small>
+        show: News detail <small>%name%</small>
+        new: Create a new news
+        edit: Edit the news <small>%name%</small>
+        remove: Delete the news <small>%name%</small>
+    button:
+        list: News list
+        show: News detail
+        new: New news
+        edit: Edit news
+        remove: Delete news
+    alert:
+        empty_list: No news configured

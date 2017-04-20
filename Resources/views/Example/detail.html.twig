@@ -12,7 +12,7 @@
         <div class="col-md-8">
             <h1>{{ news.title }}</h1>
             <p>
-                <em>{{ news.date|localizeddate('full', 'short') }}</em>
+                <em>{{ news.date|format_date('full') }}</em>
             </p>
             {% if news.media is not null -%}
             <p>
@@ -37,10 +37,10 @@
             {% for n in latest -%}
             <p>
                 <a href="{{ path('ekyna_news_example_detail', link_params|merge({'slug': n.slug})) }}" class="h4">{{ n.title }}</a><br>
-                <em>{{ n.date|localizeddate('full') }}</em>
+                <em>{{ n.date|format_date('short') }}</em>
             </p>
             <p>
-                {{- n.content|striptags|truncate(128, true, '&hellip;')|raw -}}
+                {{- n.content|striptags|u.truncate(128, '&hellip;', true)|raw -}}
             </p>
             {%- if not loop.last %}<hr>{% endif -%}
             {%- endfor %}

@@ -1,0 +1,30 @@
+namespaces:
+    ekyna_news:
+        label: label
+        trans_domain: EkynaNews
+        prefix: /content
+
+resources:
+    ekyna_news:
+        news:
+            driver: doctrine/orm
+            entity:
+                interface: Ekyna\Bundle\NewsBundle\Model\NewsInterface
+                class: Ekyna\Bundle\NewsBundle\Entity\News
+            repository:
+                interface: Ekyna\Bundle\NewsBundle\Repository\NewsRepositoryInterface
+                class: Ekyna\Bundle\NewsBundle\Repository\NewsRepository
+            form: Ekyna\Bundle\NewsBundle\Form\Type\NewsType
+            table: Ekyna\Bundle\NewsBundle\Table\Type\NewsType
+            trans_domain: EkynaNews
+            translation:
+                interface: Ekyna\Bundle\NewsBundle\Model\NewsTranslationInterface
+                class: Ekyna\Bundle\NewsBundle\Entity\NewsTranslation
+                fields: [title, content, slug]
+            actions:
+                admin_crud:
+                    form: '@EkynaNews/Admin/News/_form.html.twig'
+                    read: '@EkynaNews/Admin/News/read.html.twig'
+                admin_toggle:
+                    properties: enabled
+                admin_tinymce: ~

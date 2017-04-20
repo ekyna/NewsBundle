@@ -1,8 +1,11 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Ekyna\Bundle\NewsBundle\Entity;
 
 use DateTime;
+use DateTimeInterface;
 use Ekyna\Bundle\CmsBundle\Entity\Seo;
 use Ekyna\Bundle\CmsBundle\Model as Cms;
 use Ekyna\Bundle\MediaBundle\Model as Media;
@@ -18,37 +21,16 @@ use Ekyna\Component\Resource\Model as RM;
  */
 class News extends RM\AbstractTranslatable implements NewsInterface
 {
-    use RM\TimestampableTrait,
-        RM\TaggedEntityTrait,
-        Cms\SeoSubjectTrait,
-        Media\MediaSubjectTrait;
+    use Cms\SeoSubjectTrait;
+    use Media\MediaSubjectTrait;
+    use RM\TaggedEntityTrait;
+    use RM\TimestampableTrait;
 
-    /**
-     * @var integer
-     */
-    protected $id;
+    protected ?int              $id   = null;
+    protected ?string           $name = null;
+    protected DateTimeInterface $date;
+    protected bool              $enabled;
 
-    /**
-     * @var string
-     */
-    protected $name;
-
-    /**
-     * @var DateTime
-     */
-    protected $date;
-
-    /**
-     * @var boolean
-     */
-    protected $enabled;
-
-
-    /**
-     * Constructor.
-     *
-     * @inheritDoc
-     */
     public function __construct()
     {
         parent::__construct();
@@ -58,27 +40,16 @@ class News extends RM\AbstractTranslatable implements NewsInterface
         $this->seo = new Seo();
     }
 
-    /**
-     * Returns the string representation.
-     *
-     * @return string
-     */
     public function __toString(): string
     {
         return $this->name ?: 'New news';
     }
 
-    /**
-     * @inheritDoc
-     */
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    /**
-     * @inheritDoc
-     */
     public function setName(string $name): NewsInterface
     {
         $this->name = $name;
@@ -86,17 +57,11 @@ class News extends RM\AbstractTranslatable implements NewsInterface
         return $this;
     }
 
-    /**
-     * @inheritDoc
-     */
     public function getName(): ?string
     {
         return $this->name;
     }
 
-    /**
-     * @inheritDoc
-     */
     public function setTitle(string $title): NewsInterface
     {
         $this->translate()->setTitle($title);
@@ -104,17 +69,11 @@ class News extends RM\AbstractTranslatable implements NewsInterface
         return $this;
     }
 
-    /**
-     * @inheritDoc
-     */
     public function getTitle(): ?string
     {
         return $this->translate()->getTitle();
     }
 
-    /**
-     * @inheritDoc
-     */
     public function setContent(string $content): NewsInterface
     {
         $this->translate()->setContent($content);
@@ -122,17 +81,11 @@ class News extends RM\AbstractTranslatable implements NewsInterface
         return $this;
     }
 
-    /**
-     * @inheritDoc
-     */
     public function getContent(): ?string
     {
         return $this->translate()->getContent();
     }
 
-    /**
-     * @inheritDoc
-     */
     public function setSlug(string $slug): NewsInterface
     {
         $this->translate()->setSlug($slug);
@@ -140,35 +93,23 @@ class News extends RM\AbstractTranslatable implements NewsInterface
         return $this;
     }
 
-    /**
-     * @inheritDoc
-     */
     public function getSlug(): ?string
     {
         return $this->translate()->getSlug();
     }
 
-    /**
-     * @inheritDoc
-     */
-    public function setDate(DateTime $date): NewsInterface
+    public function setDate(DateTimeInterface $date): NewsInterface
     {
         $this->date = $date;
 
         return $this;
     }
 
-    /**
-     * @inheritDoc
-     */
-    public function getDate(): DateTime
+    public function getDate(): DateTimeInterface
     {
         return $this->date;
     }
 
-    /**
-     * @inheritDoc
-     */
     public function setEnabled(bool $enabled): NewsInterface
     {
         $this->enabled = $enabled;
@@ -176,18 +117,12 @@ class News extends RM\AbstractTranslatable implements NewsInterface
         return $this;
     }
 
-    /**
-     * @inheritDoc
-     */
     public function getEnabled(): bool
     {
         return $this->enabled;
     }
 
-    /**
-     * @inheritDoc
-     */
-    public static function getEntityTagPrefix()
+    public static function getEntityTagPrefix(): string
     {
         return 'ekyna_news.news';
     }

@@ -1,27 +1,27 @@
 {
-	"name" : "ekyna/news-bundle",
-	"description" : "News management",
-	"type" : "symfony-bundle",
-	"authors" : [
-		{
-			"name" : "Etienne Dauvergne",
-			"homepage" : "https://ekyna.com"
-		}
-	],
-	"keywords" : [
-		"symfony2",
-		"news",
-		"bundle"
-	],
-	"homepage" : "https://github.com/ekyna/NewsBundle",
-	"license" : "MIT",
-	"require" : {
-		"php" : ">=7.0",
-		"ekyna/cms-bundle" : "0.7.x-dev"
-	},
-	"autoload" : {
-		"psr-4" : {
-			"Ekyna\\Bundle\\NewsBundle\\" : ""
-		}
-	}
+    "name": "ekyna/news-bundle",
+    "description": "News management",
+    "type": "symfony-bundle",
+    "authors": [
+        {
+            "name": "Etienne Dauvergne",
+            "homepage": "https://ekyna.com"
+        }
+    ],
+    "keywords": [
+        "symfony2",
+        "news",
+        "bundle"
+    ],
+    "homepage": "https://github.com/ekyna/NewsBundle",
+    "license": "MIT",
+    "require": {
+        "php": ">=7.4",
+        "ekyna/cms-bundle": "0.8.x-dev"
+    },
+    "autoload": {
+        "psr-4": {
+            "Ekyna\\Bundle\\NewsBundle\\": ""
+        }
+    }
 }

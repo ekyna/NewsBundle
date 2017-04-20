@@ -1,0 +1,23 @@
+ekyna_news_example_index:
+    path: ''
+    controller: Ekyna\Bundle\NewsBundle\Controller\ExampleController::index
+    methods: [GET]
+    options:
+        ekyna_i18n: ~
+        _cms:
+            name: Actualités
+            title:
+                fr: Actualités
+                en: News
+            menus: [main, footer]
+            advanced: true
+            position: 95
+
+ekyna_news_example_detail:
+    path: /{slug}
+    controller: Ekyna\Bundle\NewsBundle\Controller\ExampleController::detail
+    methods: [GET]
+    requirements:
+        slug: '[a-zA-Z0-9-]+'
+    options:
+        ekyna_i18n: ~

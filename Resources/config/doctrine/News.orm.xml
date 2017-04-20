@@ -8,7 +8,6 @@
 
     <mapped-superclass
             name="Ekyna\Bundle\NewsBundle\Entity\News"
-            repository-class="Ekyna\Bundle\NewsBundle\Entity\NewsRepository"
             table="news_news">
 
         <id name="id" type="integer" column="id">

@@ -1,12 +1,14 @@
 <?php
 
-namespace Ekyna\Bundle\NewsBundle\Entity;
+declare(strict_types=1);
+
+namespace Ekyna\Bundle\NewsBundle\Repository;
 
 use DateTime;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Tools\Pagination\Paginator;
+use Ekyna\Component\Resource\Doctrine\ORM\Repository\TranslatableRepository;
 use Ekyna\Bundle\NewsBundle\Model\NewsInterface;
-use Ekyna\Component\Resource\Doctrine\ORM\TranslatableResourceRepository;
 use Pagerfanta\Pagerfanta;
 
 /**
@@ -14,15 +16,10 @@ use Pagerfanta\Pagerfanta;
  * @package Ekyna\Bundle\NewsBundle\Entity
  * @author  Étienne Dauvergne <contact@ekyna.com>
  */
-class NewsRepository extends TranslatableResourceRepository
+class NewsRepository extends TranslatableRepository implements NewsRepositoryInterface
 {
     /**
      * Returns the front news pager.
-     *
-     * @param integer $currentPage
-     * @param integer $maxPerPage
-     *
-     * @return Pagerfanta
      */
     public function createFrontPager(int $currentPage, int $maxPerPage = 12): Pagerfanta
     {
@@ -49,10 +46,6 @@ class NewsRepository extends TranslatableResourceRepository
 
     /**
      * Finds one news by slug.
-     *
-     * @param string $slug
-     *
-     * @return NewsInterface|null
      */
     public function findOneBySlug(string $slug): ?NewsInterface
     {
@@ -60,7 +53,7 @@ class NewsRepository extends TranslatableResourceRepository
             return null;
         }
 
-        $today = new \DateTime();
+        $today = new DateTime();
         $today->setTime(23, 59, 59, 999999);
 
         $qb = $this->getQueryBuilder();
@@ -81,13 +74,11 @@ class NewsRepository extends TranslatableResourceRepository
     /**
      * Finds the latest news.
      *
-     * @param int $limit
-     *
-     * @return Paginator|NewsInterface[]
+     * @return Paginator|array<NewsInterface>
      */
     public function findLatest(int $limit = 3): Paginator
     {
-        $today = new \DateTime();
+        $today = new DateTime();
         $today->setTime(23, 59, 59, 999999);
 
         $qb = $this->getCollectionQueryBuilder();
@@ -103,9 +94,6 @@ class NewsRepository extends TranslatableResourceRepository
         return new Paginator($qb->getQuery(), true);
     }
 
-    /**
-     * @inheritDoc
-     */
     protected function getAlias(): string
     {
         return 'n';
