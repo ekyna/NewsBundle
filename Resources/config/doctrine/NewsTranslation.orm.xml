@@ -14,8 +14,8 @@
             <generator strategy="AUTO"/>
         </id>
 
-        <field name="title" type="string" column="title" length="255"/>
-        <field name="content" type="text" column="content" /><!-- TODO nullable as not required in form [0.3] -->
+        <field name="title" type="string" column="title" length="255" unique="true"/>
+        <field name="content" type="text" column="content" nullable="true" />
         <field name="slug" column="slug" type="string" length="255" unique="true">
             <gedmo:slug unique="true" updatable="false" fields="title" />
         </field>

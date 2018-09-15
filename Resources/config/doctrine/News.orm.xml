@@ -15,7 +15,7 @@
             <generator strategy="AUTO"/>
         </id>
 
-        <field name="name" type="string" column="name" length="255"/>
+        <field name="name" type="string" column="name" length="255" unique="true"/>
         <field name="date" type="datetime" column="date"/>
         <field name="enabled" type="boolean" column="enabled"/>
         <field name="createdAt" column="created_at" type="datetime">

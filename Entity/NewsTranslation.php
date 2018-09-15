@@ -2,12 +2,12 @@
 
 namespace Ekyna\Bundle\NewsBundle\Entity;
 
-use Ekyna\Bundle\AdminBundle\Model\AbstractTranslation;
+use Ekyna\Component\Resource\Model\AbstractTranslation;
 
 /**
  * Class News
  * @package Ekyna\Bundle\NewsBundle\Entity
- * @author Étienne Dauvergne <contact@ekyna.com>
+ * @author  Étienne Dauvergne <contact@ekyna.com>
  */
 class NewsTranslation extends AbstractTranslation
 {
@@ -35,7 +35,7 @@ class NewsTranslation extends AbstractTranslation
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -46,7 +46,8 @@ class NewsTranslation extends AbstractTranslation
      * Set title
      *
      * @param string $title
-     * @return News
+     *
+     * @return NewsTranslation
      */
     public function setTitle($title)
     {
@@ -58,7 +59,7 @@ class NewsTranslation extends AbstractTranslation
     /**
      * Get title
      *
-     * @return string 
+     * @return string
      */
     public function getTitle()
     {
@@ -69,7 +70,8 @@ class NewsTranslation extends AbstractTranslation
      * Set content
      *
      * @param string $content
-     * @return News
+     *
+     * @return NewsTranslation
      */
     public function setContent($content)
     {
@@ -92,7 +94,8 @@ class NewsTranslation extends AbstractTranslation
      * Set slug
      *
      * @param string $slug
-     * @return News
+     *
+     * @return NewsTranslation
      */
     public function setSlug($slug)
     {
@@ -104,7 +107,7 @@ class NewsTranslation extends AbstractTranslation
     /**
      * Get slug
      *
-     * @return string 
+     * @return string
      */
     public function getSlug()
     {

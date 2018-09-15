@@ -2,21 +2,25 @@
 
 namespace Ekyna\Bundle\NewsBundle\Entity;
 
-use Ekyna\Bundle\AdminBundle\Model\AbstractTranslatable;
-use Ekyna\Bundle\CoreBundle\Model as Core;
+use Ekyna\Bundle\CmsBundle\Entity\Seo;
+use Ekyna\Bundle\CmsBundle\Model as Cms;
+use Ekyna\Bundle\MediaBundle\Model as Media;
 use Ekyna\Bundle\NewsBundle\Model\NewsInterface;
+use Ekyna\Component\Resource\Model as RM;
 
 /**
  * Class News
  * @package Ekyna\Bundle\NewsBundle\Entity
- * @author Étienne Dauvergne <contact@ekyna.com>
+ * @author  Étienne Dauvergne <contact@ekyna.com>
  *
  * @method NewsTranslation translate($locale = null, $create = false)
  */
-class News extends AbstractTranslatable implements NewsInterface
+class News extends RM\AbstractTranslatable implements NewsInterface
 {
-    use Core\TimestampableTrait,
-        Core\TaggedEntityTrait;
+    use RM\TimestampableTrait,
+        RM\TaggedEntityTrait,
+        Cms\SeoSubjectTrait,
+        Media\MediaSubjectTrait;
 
     /**
      * @var integer
@@ -40,6 +44,20 @@ class News extends AbstractTranslatable implements NewsInterface
 
 
     /**
+     * Constructor.
+     *
+     * @inheritDoc
+     */
+    public function __construct()
+    {
+        parent::__construct();
+
+        $this->date = new \DateTime();
+        $this->enabled = false;
+        $this->seo = new Seo();
+    }
+
+    /**
      * Returns the string representation.
      *
      * @return string
@@ -52,7 +70,7 @@ class News extends AbstractTranslatable implements NewsInterface
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -63,6 +81,7 @@ class News extends AbstractTranslatable implements NewsInterface
      * Set name
      *
      * @param string $name
+     *
      * @return News
      */
     public function setName($name)
@@ -75,7 +94,7 @@ class News extends AbstractTranslatable implements NewsInterface
     /**
      * Get name
      *
-     * @return string 
+     * @return string
      */
     public function getName()
     {
@@ -86,18 +105,20 @@ class News extends AbstractTranslatable implements NewsInterface
      * Set title
      *
      * @param string $title
+     *
      * @return News
      */
     public function setTitle($title)
     {
         $this->translate()->setTitle($title);
+
         return $this;
     }
 
     /**
      * Get title
      *
-     * @return string 
+     * @return string
      */
     public function getTitle()
     {
@@ -108,11 +129,13 @@ class News extends AbstractTranslatable implements NewsInterface
      * Set content
      *
      * @param string $content
+     *
      * @return News
      */
     public function setContent($content)
     {
         $this->translate()->setContent($content);
+
         return $this;
     }
 
@@ -130,18 +153,20 @@ class News extends AbstractTranslatable implements NewsInterface
      * Set slug
      *
      * @param string $slug
+     *
      * @return News
      */
     public function setSlug($slug)
     {
         $this->translate()->setSlug($slug);
+
         return $this;
     }
 
     /**
      * Get slug
      *
-     * @return string 
+     * @return string
      */
     public function getSlug()
     {
@@ -152,6 +177,7 @@ class News extends AbstractTranslatable implements NewsInterface
      * Set date
      *
      * @param \DateTime $date
+     *
      * @return News
      */
     public function setDate(\DateTime $date)
@@ -164,7 +190,7 @@ class News extends AbstractTranslatable implements NewsInterface
     /**
      * Get date
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getDate()
     {
@@ -175,6 +201,7 @@ class News extends AbstractTranslatable implements NewsInterface
      * Set enabled
      *
      * @param boolean $enabled
+     *
      * @return News
      */
     public function setEnabled($enabled)
@@ -187,7 +214,7 @@ class News extends AbstractTranslatable implements NewsInterface
     /**
      * Get enabled
      *
-     * @return boolean 
+     * @return boolean
      */
     public function getEnabled()
     {

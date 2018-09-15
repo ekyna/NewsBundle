@@ -2,9 +2,10 @@
 	"name" : "ekyna/news-bundle",
 	"description" : "News management",
 	"type" : "symfony-bundle",
-	"authors" : [{
+	"authors" : [
+		{
 			"name" : "Etienne Dauvergne",
-			"homepage" : "http://ekyna.com"
+			"homepage" : "https://ekyna.com"
 		}
 	],
 	"keywords" : [
@@ -13,12 +14,10 @@
 		"bundle"
 	],
 	"homepage" : "https://github.com/ekyna/NewsBundle",
-	"license" : [
-		"MIT"
-	],
+	"license" : "MIT",
 	"require" : {
-		"php" : ">=5.4.0",
-		"ekyna/cms-bundle" : "0.5.x-dev"
+		"php" : ">=7.0",
+		"ekyna/cms-bundle" : "0.7.x-dev"
 	},
 	"autoload" : {
 		"psr-4" : {

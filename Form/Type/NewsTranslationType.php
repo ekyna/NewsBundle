@@ -2,14 +2,17 @@
 
 namespace Ekyna\Bundle\NewsBundle\Form\Type;
 
+use Ekyna\Bundle\CoreBundle\Form\Type\TinymceType;
+use Ekyna\Bundle\NewsBundle\Entity\NewsTranslation;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
  * Class NewsTranslationType
  * @package AppBundle\Form\Type
- * @author Étienne Dauvergne <contact@ekyna.com>
+ * @author  Étienne Dauvergne <contact@ekyna.com>
  */
 class NewsTranslationType extends AbstractType
 {
@@ -19,15 +22,16 @@ class NewsTranslationType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('title', 'text', [
-                'label' => 'ekyna_core.field.title',
+            ->add('title', TextType::class, [
+                'label'        => 'ekyna_core.field.title',
+                'admin_helper' => 'NEWS_NEWS_TRANSLATION_TITLE',
             ])
-            ->add('content', 'tinymce', [
-                'label' => 'ekyna_core.field.content',
-                'required' => false,
-                'theme' => 'advanced',
-            ])
-        ;
+            ->add('content', TinymceType::class, [
+                'label'        => 'ekyna_core.field.content',
+                'theme'        => 'advanced',
+                'required'     => false,
+                'admin_helper' => 'NEWS_NEWS_TRANSLATION_CONTENT',
+            ]);
     }
 
     /**
@@ -37,16 +41,7 @@ class NewsTranslationType extends AbstractType
     {
         $resolver
             ->setDefaults([
-                'data_class' => 'Ekyna\Bundle\NewsBundle\Entity\NewsTranslation',
-            ])
-        ;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getName()
-    {
-        return 'ekyna_news_news_translation';
+                'data_class' => NewsTranslation::class,
+            ]);
     }
 }

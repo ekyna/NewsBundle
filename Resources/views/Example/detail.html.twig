@@ -1,8 +1,7 @@
 {% extends "EkynaCmsBundle::base.html.twig" %}
 
 {% block metas -%}
-    {{ cms_title('title', news.title ~ ekyna_cms_seo_title_append) }}
-    {{ cms_meta('description', news.content|striptags|truncate(128, true)|raw) }}
+    {{ cms_metas(news) }}
 {%- endblock metas %}
 
 {% block content %}
@@ -15,6 +14,11 @@
             <p>
                 <em>{{ news.date|localizeddate('full', 'short') }}</em>
             </p>
+            {% if news.media is not null %}
+            <p>
+                {{ news.media|media }}
+            </p>
+            {% endif %}
             <div>
                 {{ news.content|raw }}
             </div>

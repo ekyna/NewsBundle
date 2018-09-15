@@ -26,15 +26,15 @@ class AdminMenuPass implements CompilerPassInterface
         $pool->addMethodCall('createGroup', [[
             'name'     => 'content',
             'label'    => 'ekyna_core.field.content',
-            'icon'     => 'file',
-            'position' => 50,
+            'icon'     => 'paragraph',
+            'position' => 20,
         ]]);
         $pool->addMethodCall('createEntry', ['content', [
             'name'     => 'news',
             'route'    => 'ekyna_news_news_admin_home',
             'label'    => 'ekyna_news.news.label.plural',
             'resource' => 'ekyna_news_news',
-            'position' => 10,
+            'position' => 50,
         ]]);
     }
 }

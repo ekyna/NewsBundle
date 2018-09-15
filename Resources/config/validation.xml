@@ -16,6 +16,12 @@
         <property name="translations">
             <constraint name="Valid" />
         </property>
+        <property name="seo">
+            <constraint name="Valid" />
+        </property>
+        <property name="media">
+            <constraint name="Valid" />
+        </property>
     </class>
 
     <class name="Ekyna\Bundle\NewsBundle\Entity\NewsTranslation">
