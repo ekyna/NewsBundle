@@ -42,8 +42,8 @@ class Configuration implements ConfigurationInterface
                             ->addDefaultsIfNotSet()
                             ->children()
                                 ->variableNode('templates')->defaultValue([
-                                    '_form.html' => 'EkynaNewsBundle:Admin/News:_form.html',
-                                    'show.html'  => 'EkynaNewsBundle:Admin/News:show.html',
+                                    '_form.html' => '@EkynaNews/Admin/News/_form.html',
+                                    'show.html'  => '@EkynaNews/Admin/News/show.html',
                                 ])->end()
                                 ->scalarNode('entity')->defaultValue('Ekyna\Bundle\NewsBundle\Entity\News')->end()
                                 ->scalarNode('controller')->defaultValue('Ekyna\Bundle\NewsBundle\Controller\Admin\NewsController')->end()

@@ -32,7 +32,7 @@ class ExampleController extends Controller
         /** @var News[] $news */
         $news = $pager->getCurrentPageResults();
 
-        $response = $this->render('EkynaNewsBundle:Example:index.html.twig', [
+        $response = $this->render('@EkynaNews/Example/index.html.twig', [
             'pager' => $pager,
             'news'  => $news,
         ]);
@@ -64,7 +64,7 @@ class ExampleController extends Controller
 
         $latest = $repo->findLatest()->getIterator();
 
-        $response = $this->render('EkynaNewsBundle:Example:detail.html.twig', [
+        $response = $this->render('@EkynaNews/Example/detail.html.twig', [
             'news' => $news,
             'latest' => $latest,
         ]);
