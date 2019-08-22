@@ -33,7 +33,7 @@ class NewsRepository extends TranslatableResourceRepository
             ->getQuery();
 
         $today = new \DateTime();
-        $today->setTime(23, 59, 59);
+        $today->setTime(23, 59, 59, 999999);
         $query
             ->setParameter('enabled', true)
             ->setParameter('today', $today, Type::DATETIME);
@@ -58,7 +58,7 @@ class NewsRepository extends TranslatableResourceRepository
         }
 
         $today = new \DateTime();
-        $today->setTime(23, 59, 59);
+        $today->setTime(23, 59, 59, 999999);
 
         $qb = $this->getQueryBuilder();
         $query = $qb
@@ -85,7 +85,7 @@ class NewsRepository extends TranslatableResourceRepository
     public function findLatest($limit = 3)
     {
         $today = new \DateTime();
-        $today->setTime(23, 59, 59);
+        $today->setTime(23, 59, 59, 999999);
 
         $qb = $this->getCollectionQueryBuilder();
         $qb
