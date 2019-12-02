@@ -49,7 +49,10 @@
                         'content': {
                             'label': 'ekyna_core.field.content',
                             'type': 'tinymce',
-                            'value': path('ekyna_news_news_admin_tinymce', identifiers|merge({'newsId': news.id})),
+                            'options': {
+                                'route': 'ekyna_news_news_admin_tinymce',
+                                'route_params': identifiers|merge({'newsId': news.id}),
+                            }
                         }
                     }
                 }) }}

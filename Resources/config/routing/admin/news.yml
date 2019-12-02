@@ -28,11 +28,14 @@ ekyna_news_news_admin_edit:
         newsId: \d+
 
 ekyna_news_news_admin_tinymce:
-    path: /{newsId}/tinymce
-    defaults: { _controller: "ekyna_news.news.controller:tinymceAction", field: content }
+    path: /{newsId}/tinymce/{_locale}/{field}
+    controller: "ekyna_news.news.controller:tinymceAction"
     methods: [GET]
     requirements:
         newsId: \d+
+    defaults:
+        _locale: "%locale%"
+        field: content
 
 ekyna_news_news_admin_toggle:
     path: /{newsId}/toggle/{field}
