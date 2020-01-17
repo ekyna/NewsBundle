@@ -2,10 +2,10 @@
 
 namespace Ekyna\Bundle\NewsBundle\Entity;
 
-use Doctrine\DBAL\Types\Type;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Tools\Pagination\Paginator;
-use Ekyna\Component\Resource\Doctrine\ORM\TranslatableResourceRepository;
 use Ekyna\Bundle\NewsBundle\Model\NewsInterface;
+use Ekyna\Component\Resource\Doctrine\ORM\TranslatableResourceRepository;
 
 /**
  * Class NewsRepository
@@ -36,10 +36,11 @@ class NewsRepository extends TranslatableResourceRepository
         $today->setTime(23, 59, 59, 999999);
         $query
             ->setParameter('enabled', true)
-            ->setParameter('today', $today, Type::DATETIME);
+            ->setParameter('today', $today, Types::DATETIME_MUTABLE);
 
         return $this
             ->getPager($query)
+            ->setNormalizeOutOfRangePages(true)
             ->setMaxPerPage($maxPerPage)
             ->setCurrentPage($currentPage);
     }
@@ -60,7 +61,7 @@ class NewsRepository extends TranslatableResourceRepository
         $today = new \DateTime();
         $today->setTime(23, 59, 59, 999999);
 
-        $qb = $this->getQueryBuilder();
+        $qb    = $this->getQueryBuilder();
         $query = $qb
             ->andWhere($qb->expr()->eq('n.enabled', ':enabled'))
             ->andWhere($qb->expr()->eq('translation.slug', ':slug'))
@@ -71,7 +72,7 @@ class NewsRepository extends TranslatableResourceRepository
         return $query
             ->setParameter('enabled', true)
             ->setParameter('slug', $slug)
-            ->setParameter('today', $today, Type::DATETIME)
+            ->setParameter('today', $today, Types::DATETIME_MUTABLE)
             ->getOneOrNullResult();
     }
 
@@ -94,7 +95,7 @@ class NewsRepository extends TranslatableResourceRepository
             ->addOrderBy('n.date', 'DESC')
             ->setMaxResults($limit)
             ->setParameter('enabled', true)
-            ->setParameter('today', $today, Type::DATETIME)
+            ->setParameter('today', $today, Types::DATETIME_MUTABLE)
             ->getQuery();
 
         return new Paginator($qb->getQuery(), true);
