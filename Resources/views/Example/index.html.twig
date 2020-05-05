@@ -1,21 +1,35 @@
 {% extends '@EkynaCms/base.html.twig' %}
 
-{% block content %}
+{% block content -%}
+{% apply spaceless -%}
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-
             <h1>News</h1>
+
             <hr>
 
-            {% set nb_per_row = 3 %}
-            {% set link_params = {} %}
-            {% if pager.currentPage > 1 %}
+            {% set nb_per_row = 2 -%}
+            {% set link_params = {} -%}
+            {% if pager.currentPage > 1 -%}
                 {% set link_params = {'page': pager.currentPage} %}
-            {% endif %}
-            {% for n in news %}
-                {% if loop.index0 % nb_per_row == 0 %}<div class="row">{% endif %}
+            {%- endif -%}
+            {% for n in news -%}
+                {% if loop.index0 % nb_per_row == 0 %}<div class="row">{% endif -%}
                 <div class="col-md-{{ 12 / nb_per_row }}">
+
+                    {% if n.media -%}
+                    <div class="row">
+                        <div class="col-md-4">
+                            {% if n.media is media_video %}
+                                {{ n.media|media_video_thumb({'filter': 'col_lg_2'}) }}
+                            {% else %}
+                                {{ n.media|media_image({'filter': 'col_lg_2'}) }}
+                            {% endif %}
+                        </div>
+                        <div class="col-md-8">
+                    {%- endif %}
+
                     <p class="h4">
                         <a href="{{ path('ekyna_news_example_detail', link_params|merge({'slug': n.slug})) }}">
                             {{ n.title }}
@@ -27,9 +41,15 @@
                     <p>
                         {{ n.content|striptags|truncate(128, true, '&hellip;')|raw }}
                     </p>
+
+                    {% if n.media -%}
+                        </div>
+                    </div>
+                    {%- endif %}
+
                 </div>
-                {% if loop.last or loop.index % nb_per_row == 0 %}</div>{% endif %}
-            {% endfor %}
+                {% if loop.last or loop.index % nb_per_row == 0 %}</div>{% endif -%}
+            {% endfor -%}
 
             <hr>
 
@@ -42,4 +62,5 @@
         </div>
     </div>
 </div>
-{% endblock content %}
+{%- endapply %}
+{%- endblock content %}

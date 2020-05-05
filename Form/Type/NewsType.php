@@ -17,7 +17,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 class NewsType extends ResourceFormType
 {
     /**
-     * {@inheritdoc}
+     * @inheritdoc
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {

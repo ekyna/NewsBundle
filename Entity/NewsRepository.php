@@ -2,10 +2,12 @@
 
 namespace Ekyna\Bundle\NewsBundle\Entity;
 
+use DateTime;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Tools\Pagination\Paginator;
 use Ekyna\Bundle\NewsBundle\Model\NewsInterface;
 use Ekyna\Component\Resource\Doctrine\ORM\TranslatableResourceRepository;
+use Pagerfanta\Pagerfanta;
 
 /**
  * Class NewsRepository
@@ -20,9 +22,9 @@ class NewsRepository extends TranslatableResourceRepository
      * @param integer $currentPage
      * @param integer $maxPerPage
      *
-     * @return \Pagerfanta\Pagerfanta
+     * @return Pagerfanta
      */
-    public function createFrontPager($currentPage, $maxPerPage = 12)
+    public function createFrontPager(int $currentPage, int $maxPerPage = 12): Pagerfanta
     {
         $qb = $this->getCollectionQueryBuilder();
 
@@ -32,7 +34,7 @@ class NewsRepository extends TranslatableResourceRepository
             ->andWhere($qb->expr()->lte('n.date', ':today'))
             ->getQuery();
 
-        $today = new \DateTime();
+        $today = new DateTime();
         $today->setTime(23, 59, 59, 999999);
         $query
             ->setParameter('enabled', true)
@@ -52,7 +54,7 @@ class NewsRepository extends TranslatableResourceRepository
      *
      * @return NewsInterface|null
      */
-    public function findOneBySlug($slug)
+    public function findOneBySlug(string $slug): ?NewsInterface
     {
         if (0 == strlen($slug)) {
             return null;
@@ -61,7 +63,7 @@ class NewsRepository extends TranslatableResourceRepository
         $today = new \DateTime();
         $today->setTime(23, 59, 59, 999999);
 
-        $qb    = $this->getQueryBuilder();
+        $qb = $this->getQueryBuilder();
         $query = $qb
             ->andWhere($qb->expr()->eq('n.enabled', ':enabled'))
             ->andWhere($qb->expr()->eq('translation.slug', ':slug'))
@@ -83,7 +85,7 @@ class NewsRepository extends TranslatableResourceRepository
      *
      * @return Paginator|NewsInterface[]
      */
-    public function findLatest($limit = 3)
+    public function findLatest(int $limit = 3): Paginator
     {
         $today = new \DateTime();
         $today->setTime(23, 59, 59, 999999);
@@ -102,9 +104,9 @@ class NewsRepository extends TranslatableResourceRepository
     }
 
     /**
-     * {@inheritdoc}
+     * @inheritDoc
      */
-    protected function getAlias()
+    protected function getAlias(): string
     {
         return 'n';
     }

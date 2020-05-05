@@ -5,12 +5,13 @@ namespace Ekyna\Bundle\NewsBundle\Controller;
 use Ekyna\Bundle\CoreBundle\Controller\Controller;
 use Ekyna\Bundle\NewsBundle\Entity\News;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 /**
  * Class ExampleController
  * @package Ekyna\Bundle\NewsBundle\Controller
- * @author Étienne Dauvergne <contact@ekyna.com>
+ * @author  Étienne Dauvergne <contact@ekyna.com>
  */
 class ExampleController extends Controller
 {
@@ -18,16 +19,16 @@ class ExampleController extends Controller
      * Example index page.
      *
      * @param Request $request
-     * @return \Symfony\Component\HttpFoundation\Response
+     *
+     * @return Response
      */
-    public function indexAction(Request $request)
+    public function indexAction(Request $request): Response
     {
         $currentPage = $request->query->get('page', 1);
 
         $pager = $this
             ->get('ekyna_news.news.repository')
-            ->createFrontPager($currentPage, 12)
-        ;
+            ->createFrontPager($currentPage, 12);
 
         /** @var News[] $news */
         $news = $pager->getCurrentPageResults();
@@ -49,10 +50,10 @@ class ExampleController extends Controller
      * Example detail page.
      *
      * @param Request $request
-     * @return \Symfony\Component\HttpFoundation\Response
-     * @throws NotFoundHttpException
+     *
+     * @return Response
      */
-    public function detailAction(Request $request)
+    public function detailAction(Request $request): Response
     {
         $repo = $this->get('ekyna_news.news.repository');
 
@@ -65,7 +66,7 @@ class ExampleController extends Controller
         $latest = $repo->findLatest()->getIterator();
 
         $response = $this->render('@EkynaNews/Example/detail.html.twig', [
-            'news' => $news,
+            'news'   => $news,
             'latest' => $latest,
         ]);
 

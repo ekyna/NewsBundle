@@ -6,8 +6,7 @@
         xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
                             http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
 
-    <entity
-            name="Ekyna\Bundle\NewsBundle\Entity\NewsTranslation"
+    <entity name="Ekyna\Bundle\NewsBundle\Entity\NewsTranslation"
             table="news_news_translation">
 
         <id name="id" type="integer" column="id">

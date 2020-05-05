@@ -21,6 +21,12 @@
         </property>
         <property name="media">
             <constraint name="Valid" />
+            <constraint name="Ekyna\Bundle\MediaBundle\Validator\Constraints\MediaTypes">
+                <option name="types">
+                    <value>image</value>
+                    <value>video</value>
+                </option>
+            </constraint>
         </property>
     </class>
 

@@ -14,7 +14,7 @@ use Symfony\Component\Config\Definition\ConfigurationInterface;
 class Configuration implements ConfigurationInterface
 {
     /**
-     * {@inheritDoc}
+     * @inheritDoc
      */
     public function getConfigTreeBuilder()
     {
@@ -26,7 +26,7 @@ class Configuration implements ConfigurationInterface
         return $treeBuilder;
     }
 
-	/**
+    /**
      * Adds admin pool sections.
      *
      * @param ArrayNodeDefinition $node

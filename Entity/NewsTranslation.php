@@ -37,19 +37,19 @@ class NewsTranslation extends AbstractTranslation
      *
      * @return integer
      */
-    public function getId()
+    public function getId(): ?int
     {
         return $this->id;
     }
 
     /**
-     * Set title
+     * Sets the title.
      *
      * @param string $title
      *
      * @return NewsTranslation
      */
-    public function setTitle($title)
+    public function setTitle(string $title): NewsTranslation
     {
         $this->title = $title;
 
@@ -57,23 +57,23 @@ class NewsTranslation extends AbstractTranslation
     }
 
     /**
-     * Get title
+     * Returns the title.
      *
      * @return string
      */
-    public function getTitle()
+    public function getTitle(): ?string
     {
         return $this->title;
     }
 
     /**
-     * Set content
+     * Sets the content.
      *
      * @param string $content
      *
      * @return NewsTranslation
      */
-    public function setContent($content)
+    public function setContent(string $content): NewsTranslation
     {
         $this->content = $content;
 
@@ -81,23 +81,23 @@ class NewsTranslation extends AbstractTranslation
     }
 
     /**
-     * Get content
+     * Returns the content.
      *
      * @return string
      */
-    public function getContent()
+    public function getContent(): ?string
     {
         return $this->content;
     }
 
     /**
-     * Set slug
+     * Sets the slug.
      *
      * @param string $slug
      *
      * @return NewsTranslation
      */
-    public function setSlug($slug)
+    public function setSlug(string $slug): NewsTranslation
     {
         $this->slug = $slug;
 
@@ -105,11 +105,11 @@ class NewsTranslation extends AbstractTranslation
     }
 
     /**
-     * Get slug
+     * Returns the slug.
      *
      * @return string
      */
-    public function getSlug()
+    public function getSlug(): ?string
     {
         return $this->slug;
     }

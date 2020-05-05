@@ -5,22 +5,22 @@
 {%- endblock metas %}
 
 {% block content %}
+{% apply spaceless %}
 <div class="container">
     <div class="row">
 
         <div class="col-md-8">
-
             <h1>{{ news.title }}</h1>
             <p>
                 <em>{{ news.date|localizeddate('full', 'short') }}</em>
             </p>
-            {% if news.media is not null %}
+            {% if news.media is not null -%}
             <p>
-                {{ news.media|media }}
+                {{- news.media|media({'autoplay': false}) -}}
             </p>
-            {% endif %}
+            {%- endif %}
             <div>
-                {{ news.content|raw }}
+                {{- news.content|raw -}}
             </div>
             <hr>
             {% set link_params = {} %}
@@ -34,18 +34,19 @@
         </div>
 
         <div class="col-md-4">
-            {% for n in latest %}
+            {% for n in latest -%}
             <p>
                 <a href="{{ path('ekyna_news_example_detail', link_params|merge({'slug': n.slug})) }}" class="h4">{{ n.title }}</a><br>
                 <em>{{ n.date|localizeddate('full') }}</em>
             </p>
             <p>
-                {{ n.content|striptags|truncate(128, true, '&hellip;')|raw }}
+                {{- n.content|striptags|truncate(128, true, '&hellip;')|raw -}}
             </p>
-            {% if not loop.last %}<hr>{% endif %}
-            {% endfor %}
+            {%- if not loop.last %}<hr>{% endif -%}
+            {%- endfor %}
         </div>
 
     </div>
 </div>
+{% endapply %}
 {% endblock content %}

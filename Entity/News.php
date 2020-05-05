@@ -2,6 +2,7 @@
 
 namespace Ekyna\Bundle\NewsBundle\Entity;
 
+use DateTime;
 use Ekyna\Bundle\CmsBundle\Entity\Seo;
 use Ekyna\Bundle\CmsBundle\Model as Cms;
 use Ekyna\Bundle\MediaBundle\Model as Media;
@@ -33,7 +34,7 @@ class News extends RM\AbstractTranslatable implements NewsInterface
     protected $name;
 
     /**
-     * @var \DateTime
+     * @var DateTime
      */
     protected $date;
 
@@ -52,7 +53,7 @@ class News extends RM\AbstractTranslatable implements NewsInterface
     {
         parent::__construct();
 
-        $this->date = new \DateTime();
+        $this->date = new DateTime();
         $this->enabled = false;
         $this->seo = new Seo();
     }
@@ -68,23 +69,17 @@ class News extends RM\AbstractTranslatable implements NewsInterface
     }
 
     /**
-     * Get id
-     *
-     * @return integer
+     * @inheritDoc
      */
-    public function getId()
+    public function getId(): ?int
     {
         return $this->id;
     }
 
     /**
-     * Set name
-     *
-     * @param string $name
-     *
-     * @return News
+     * @inheritDoc
      */
-    public function setName($name)
+    public function setName(string $name): NewsInterface
     {
         $this->name = $name;
 
@@ -92,23 +87,17 @@ class News extends RM\AbstractTranslatable implements NewsInterface
     }
 
     /**
-     * Get name
-     *
-     * @return string
+     * @inheritDoc
      */
-    public function getName()
+    public function getName(): ?string
     {
         return $this->name;
     }
 
     /**
-     * Set title
-     *
-     * @param string $title
-     *
-     * @return News
+     * @inheritDoc
      */
-    public function setTitle($title)
+    public function setTitle(string $title): NewsInterface
     {
         $this->translate()->setTitle($title);
 
@@ -116,23 +105,17 @@ class News extends RM\AbstractTranslatable implements NewsInterface
     }
 
     /**
-     * Get title
-     *
-     * @return string
+     * @inheritDoc
      */
-    public function getTitle()
+    public function getTitle(): ?string
     {
         return $this->translate()->getTitle();
     }
 
     /**
-     * Set content
-     *
-     * @param string $content
-     *
-     * @return News
+     * @inheritDoc
      */
-    public function setContent($content)
+    public function setContent(string $content): NewsInterface
     {
         $this->translate()->setContent($content);
 
@@ -140,23 +123,17 @@ class News extends RM\AbstractTranslatable implements NewsInterface
     }
 
     /**
-     * Get content
-     *
-     * @return string
+     * @inheritDoc
      */
-    public function getContent()
+    public function getContent(): ?string
     {
         return $this->translate()->getContent();
     }
 
     /**
-     * Set slug
-     *
-     * @param string $slug
-     *
-     * @return News
+     * @inheritDoc
      */
-    public function setSlug($slug)
+    public function setSlug(string $slug): NewsInterface
     {
         $this->translate()->setSlug($slug);
 
@@ -164,23 +141,17 @@ class News extends RM\AbstractTranslatable implements NewsInterface
     }
 
     /**
-     * Get slug
-     *
-     * @return string
+     * @inheritDoc
      */
-    public function getSlug()
+    public function getSlug(): ?string
     {
         return $this->translate()->getSlug();
     }
 
     /**
-     * Set date
-     *
-     * @param \DateTime $date
-     *
-     * @return News
+     * @inheritDoc
      */
-    public function setDate(\DateTime $date)
+    public function setDate(DateTime $date): NewsInterface
     {
         $this->date = $date;
 
@@ -188,23 +159,17 @@ class News extends RM\AbstractTranslatable implements NewsInterface
     }
 
     /**
-     * Get date
-     *
-     * @return \DateTime
+     * @inheritDoc
      */
-    public function getDate()
+    public function getDate(): DateTime
     {
         return $this->date;
     }
 
     /**
-     * Set enabled
-     *
-     * @param boolean $enabled
-     *
-     * @return News
+     * @inheritDoc
      */
-    public function setEnabled($enabled)
+    public function setEnabled(bool $enabled): NewsInterface
     {
         $this->enabled = $enabled;
 
@@ -212,17 +177,15 @@ class News extends RM\AbstractTranslatable implements NewsInterface
     }
 
     /**
-     * Get enabled
-     *
-     * @return boolean
+     * @inheritDoc
      */
-    public function getEnabled()
+    public function getEnabled(): bool
     {
         return $this->enabled;
     }
 
     /**
-     * {@inheritdoc}
+     * @inheritDoc
      */
     public static function getEntityTagPrefix()
     {

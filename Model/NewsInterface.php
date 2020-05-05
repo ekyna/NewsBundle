@@ -2,14 +2,18 @@
 
 namespace Ekyna\Bundle\NewsBundle\Model;
 
+use DateTime;
 use Ekyna\Bundle\CmsBundle\Model as Cms;
 use Ekyna\Bundle\MediaBundle\Model as Media;
+use Ekyna\Bundle\NewsBundle\Entity\NewsTranslation;
 use Ekyna\Component\Resource\Model as RM;
 
 /**
  * Interface NewsInterface
  * @package Ekyna\Bundle\NewsBundle\Model
  * @author  Étienne Dauvergne <contact@ekyna.com>
+ *
+ * @method NewsTranslation translate($locale = null, $create = false)
  */
 interface NewsInterface extends
     RM\TimestampableInterface,
@@ -18,98 +22,98 @@ interface NewsInterface extends
     Media\MediaSubjectInterface
 {
     /**
-     * Set name
+     * Sets the name.
      *
      * @param string $name
      *
-     * @return NewsInterface|$this
+     * @return $this|NewsInterface
      */
-    public function setName($name);
+    public function setName(string $name): NewsInterface;
 
     /**
-     * Get name
+     * Returns the name.
      *
      * @return string
      */
-    public function getName();
+    public function getName(): ?string;
 
     /**
-     * Set title
+     * Sets the title.
      *
      * @param string $title
      *
-     * @return NewsInterface|$this
+     * @return $this|NewsInterface
      */
-    public function setTitle($title);
+    public function setTitle(string $title): NewsInterface;
 
     /**
-     * Get title
+     * Returns the title.
      *
      * @return string
      */
-    public function getTitle();
+    public function getTitle(): ?string;
 
     /**
-     * Set content
+     * Sets the content.
      *
      * @param string $content
      *
-     * @return NewsInterface|$this
+     * @return $this|NewsInterface
      */
-    public function setContent($content);
+    public function setContent(string $content): NewsInterface;
 
     /**
-     * Get content
+     * Returns the content.
      *
      * @return string
      */
-    public function getContent();
+    public function getContent(): ?string;
 
     /**
-     * Set slug
+     * Sets the slug.
      *
      * @param string $slug
      *
-     * @return NewsInterface|$this
+     * @return $this|NewsInterface
      */
-    public function setSlug($slug);
+    public function setSlug(string $slug): NewsInterface;
 
     /**
-     * Get slug
+     * Returns the slug.
      *
      * @return string
      */
-    public function getSlug();
+    public function getSlug(): ?string;
 
     /**
-     * Set date
+     * Sets the date.
      *
-     * @param \DateTime $date
+     * @param DateTime $date
      *
-     * @return NewsInterface|$this
+     * @return $this|NewsInterface
      */
-    public function setDate(\DateTime $date);
+    public function setDate(DateTime $date): NewsInterface;
 
     /**
-     * Get date
+     * Returns the date.
      *
-     * @return \DateTime
+     * @return DateTime
      */
-    public function getDate();
+    public function getDate(): DateTime;
 
     /**
-     * Set enabled
+     * Sets whether the news is enabled.
      *
      * @param boolean $enabled
      *
-     * @return NewsInterface|$this
+     * @return $this|NewsInterface
      */
-    public function setEnabled($enabled);
+    public function setEnabled(bool $enabled): NewsInterface;
 
     /**
-     * Get enabled
+     * Returns whether the news is enabled.
      *
-     * @return boolean
+     * @return bool
      */
-    public function getEnabled();
+    public function getEnabled(): bool;
 }

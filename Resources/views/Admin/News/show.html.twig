@@ -1,14 +1,14 @@
 {% extends '@EkynaAdmin/Entity/Default/show.html.twig' %}
 
 {% block main %}
-{% spaceless %}
+{% apply spaceless %}
 <div class="actions">
     {{ admin_resource_btn(news, 'edit') }}
     {{ admin_resource_btn(news, 'remove') }}
 </div>
 <div class="show show-with-tabs">
     <ul class="nav nav-tabs" data-tab-key="{{ resource_id }}">
-	    <li class="active">
+        <li class="active">
             <a href="#news-news-general" data-toggle="tab">
                 {{ 'ekyna_core.field.general'|trans }}
             </a>
@@ -18,10 +18,10 @@
                 {{ 'ekyna_core.field.seo'|trans }}
             </a>
         </li>
-	</ul>
-	<div class="show-body">
-	    <div class="tab-content">
-		    <div class="tab-pane active" id="news-news-general">
+    </ul>
+    <div class="show-body">
+        <div class="tab-content">
+            <div class="tab-pane active" id="news-news-general">
                 {{ show_row(news.name, 'text', {
                     'label': 'ekyna_core.field.name'
                 }) }}
@@ -59,12 +59,12 @@
                 {{ show_row(news.media, 'media', {
                     'label': 'ekyna_core.field.media'
                 }) }}
-		    </div>
+            </div>
             <div class="tab-pane" id="news-news-seo">
                 {{ show_row(news.seo, 'seo') }}
             </div>
         </div>
-	</div>
+    </div>
 </div>
-{% endspaceless %}
+{% endapply %}
 {% endblock %}

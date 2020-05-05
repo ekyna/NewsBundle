@@ -17,7 +17,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 class NewsTranslationType extends AbstractType
 {
     /**
-     * {@inheritdoc}
+     * @inheritDoc
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -35,13 +35,12 @@ class NewsTranslationType extends AbstractType
     }
 
     /**
-     * {@inheritdoc}
+     * @inheritDoc
      */
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver
-            ->setDefaults([
-                'data_class' => NewsTranslation::class,
-            ]);
+        $resolver->setDefaults([
+            'data_class' => NewsTranslation::class,
+        ]);
     }
 }
