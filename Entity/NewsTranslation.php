@@ -12,11 +12,6 @@ use Ekyna\Component\Resource\Model\AbstractTranslation;
 class NewsTranslation extends AbstractTranslation
 {
     /**
-     * @var integer
-     */
-    protected $id;
-
-    /**
      * @var string
      */
     protected $title;
@@ -31,16 +26,6 @@ class NewsTranslation extends AbstractTranslation
      */
     protected $slug;
 
-
-    /**
-     * Get id
-     *
-     * @return integer
-     */
-    public function getId(): ?int
-    {
-        return $this->id;
-    }
 
     /**
      * Sets the title.

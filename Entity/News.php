@@ -63,9 +63,9 @@ class News extends RM\AbstractTranslatable implements NewsInterface
      *
      * @return string
      */
-    public function __toString()
+    public function __toString(): string
     {
-        return $this->getName();
+        return $this->name ?: 'New news';
     }
 
     /**
