@@ -11,7 +11,6 @@
         </property>
         <property name="date">
             <constraint name="NotNull" />
-            <constraint name="DateTime" />
         </property>
         <property name="translations">
             <constraint name="Valid" />

@@ -26,7 +26,6 @@ class News extends RM\AbstractTranslatable implements NewsInterface
     use RM\TaggedEntityTrait;
     use RM\TimestampableTrait;
 
-    protected ?int              $id   = null;
     protected ?string           $name = null;
     protected DateTimeInterface $date;
     protected bool              $enabled;
@@ -43,11 +42,6 @@ class News extends RM\AbstractTranslatable implements NewsInterface
     public function __toString(): string
     {
         return $this->name ?: 'New news';
-    }
-
-    public function getId(): ?int
-    {
-        return $this->id;
     }
 
     public function setName(string $name): NewsInterface
