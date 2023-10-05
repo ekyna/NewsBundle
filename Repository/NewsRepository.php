@@ -9,6 +9,7 @@ use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Tools\Pagination\Paginator;
 use Ekyna\Component\Resource\Doctrine\ORM\Repository\TranslatableRepository;
 use Ekyna\Bundle\NewsBundle\Model\NewsInterface;
+use Pagerfanta\Doctrine\ORM\QueryAdapter;
 use Pagerfanta\Pagerfanta;
 
 /**
@@ -37,8 +38,9 @@ class NewsRepository extends TranslatableRepository implements NewsRepositoryInt
             ->setParameter('enabled', true)
             ->setParameter('today', $today, Types::DATETIME_MUTABLE);
 
-        return $this
-            ->getPager($query)
+        $pager = new Pagerfanta(new QueryAdapter($query, true, false));
+
+        return $pager
             ->setNormalizeOutOfRangePages(true)
             ->setMaxPerPage($maxPerPage)
             ->setCurrentPage($currentPage);
@@ -74,7 +76,9 @@ class NewsRepository extends TranslatableRepository implements NewsRepositoryInt
     /**
      * Finds the latest news.
      *
-     * @return Paginator|array<NewsInterface>
+     * @param int $limit
+     *
+     * @return Paginator
      */
     public function findLatest(int $limit = 3): Paginator
     {
